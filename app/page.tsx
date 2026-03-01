@@ -15,8 +15,8 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white text-[#191919]">
-      {/* Top announcement bar */}
-      <div className="bg-[#e7e7e7] text-xs py-1 px-4 flex justify-end gap-4">
+      {/* Top announcement bar - hidden on mobile */}
+      <div className="hidden md:flex bg-[#e7e7e7] text-xs py-1 px-4 justify-end gap-4">
         <span>Hi!</span>
         <span className="text-[#0654ba] cursor-pointer hover:underline">Sign in</span>
         <span>or</span>
@@ -27,9 +27,48 @@ export default function Home() {
 
       {/* eBay Header */}
       <header className="border-b border-[#e5e5e5]">
-        <div className="max-w-[1200px] mx-auto px-4 py-3 flex items-center gap-4">
+        {/* Mobile header */}
+        <div className="md:hidden">
+          <div className="flex items-center justify-between px-3 py-2">
+            {/* Hamburger */}
+            <button className="p-1">
+              <svg className="w-6 h-6 text-[#767676]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+            {/* Logo */}
+            <span className="text-[24px] font-bold tracking-tight">
+              <span className="text-[#e53238]">e</span>
+              <span className="text-[#0064d2]">b</span>
+              <span className="text-[#f5af02]">a</span>
+              <span className="text-[#86b817]">y</span>
+            </span>
+            {/* Cart */}
+            <button className="p-1">
+              <svg className="w-6 h-6 text-[#767676]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+              </svg>
+            </button>
+          </div>
+          {/* Mobile search */}
+          <div className="flex px-3 pb-2">
+            <input
+              type="text"
+              placeholder="Search for anything"
+              className="flex-1 border border-r-0 border-[#191919] rounded-l-full py-2 px-4 text-sm outline-none focus:border-[#0654ba]"
+            />
+            <button className="bg-[#0654ba] text-white px-4 rounded-r-full hover:bg-[#0041a0] transition-colors">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop header */}
+        <div className="hidden md:flex max-w-[1200px] mx-auto px-4 py-3 items-center gap-4">
           {/* eBay Logo */}
-          <div className="flex-shrink-0">
+          <div className="shrink-0">
             <span className="text-[28px] font-bold tracking-tight">
               <span className="text-[#e53238]">e</span>
               <span className="text-[#0064d2]">b</span>
@@ -39,7 +78,7 @@ export default function Home() {
           </div>
 
           {/* Shop by category */}
-          <button className="text-sm text-[#555] hover:text-[#0654ba] flex items-center gap-1 flex-shrink-0">
+          <button className="text-sm text-[#555] hover:text-[#0654ba] flex items-center gap-1 shrink-0">
             Shop by category
             <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
@@ -65,10 +104,10 @@ export default function Home() {
           </div>
 
           {/* Advanced */}
-          <span className="text-xs text-[#0654ba] cursor-pointer hover:underline flex-shrink-0">Advanced</span>
+          <span className="text-xs text-[#0654ba] cursor-pointer hover:underline shrink-0">Advanced</span>
 
           {/* Cart */}
-          <button className="relative flex-shrink-0">
+          <button className="relative shrink-0">
             <svg className="w-6 h-6 text-[#767676]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
             </svg>
@@ -76,7 +115,7 @@ export default function Home() {
         </div>
 
         {/* Category nav */}
-        <nav className="max-w-[1200px] mx-auto px-4 py-2 flex gap-6 text-sm text-[#555] overflow-x-auto">
+        <nav className="max-w-[1200px] mx-auto px-3 md:px-4 py-2 flex gap-3 md:gap-6 text-xs md:text-sm text-[#555] overflow-x-auto scrollbar-hide [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {["Home", "Saved", "Electronics", "Motors", "Fashion", "Collectibles & Art", "Sports", "Health & Beauty", "Industrial equipment", "Home & Garden", "Deals", "Sell"].map(
             (cat) => (
               <span key={cat} className="cursor-pointer hover:text-[#0654ba] whitespace-nowrap">
@@ -88,8 +127,8 @@ export default function Home() {
       </header>
 
       {/* Breadcrumb */}
-      <div className="max-w-[1200px] mx-auto px-4 py-3">
-        <div className="flex items-center gap-1 text-xs text-[#555]">
+      <div className="max-w-[1200px] mx-auto px-3 md:px-4 py-2 md:py-3 overflow-x-auto [&::-webkit-scrollbar]:hidden [scrollbar-width:none]">
+        <div className="flex items-center gap-1 text-[10px] md:text-xs text-[#555] whitespace-nowrap">
           <span className="text-[#0654ba] cursor-pointer hover:underline">Home</span>
           <span>&gt;</span>
           <span className="text-[#0654ba] cursor-pointer hover:underline">Services</span>
@@ -101,7 +140,7 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <main className="max-w-[1200px] mx-auto px-4 pb-12">
+      <main className="max-w-[1200px] mx-auto px-3 md:px-4 pb-12">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Left Column - Images */}
           <div className="lg:w-[55%]">
@@ -147,19 +186,19 @@ export default function Home() {
           {/* Right Column - Details */}
           <div className="lg:w-[45%]">
             {/* Title */}
-            <h1 className="text-[22px] font-normal leading-7 mb-2">
+            <h1 className="text-lg md:text-[22px] font-normal leading-6 md:leading-7 mb-2">
               Pregnant Russian girl that cant stop eating
             </h1>
 
             {/* Seller + Ratings row */}
-            <div className="flex items-center gap-2 text-sm mb-3">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs md:text-sm mb-3">
               <span className="text-[#0654ba] cursor-pointer hover:underline font-medium">candy_services_official</span>
               <span className="text-[#555]">(1,247)</span>
               <span className="text-[#86b817] font-medium">99.8% positive</span>
             </div>
 
             {/* Condition */}
-            <div className="flex items-center gap-2 text-sm mb-4 border-b border-[#e5e5e5] pb-4">
+            <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm mb-4 border-b border-[#e5e5e5] pb-4">
               <span className="font-medium">Condition:</span>
               <span className="text-[#555]">Brand New</span>
               <span className="text-[#555]">|</span>
@@ -168,9 +207,9 @@ export default function Home() {
 
             {/* Price section */}
             <div className="mb-4">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-sm text-[#555]">Price:</span>
-                <span className="text-[24px] font-bold">US $149.99</span>
+              <div className="flex items-baseline gap-2 mb-1">
+                <span className="text-xs md:text-sm text-[#555]">Price:</span>
+                <span className="text-xl md:text-[24px] font-bold">US $149.99</span>
               </div>
               <div className="text-sm text-[#555]">
                 Approximately AU $234.50
@@ -204,7 +243,7 @@ export default function Home() {
             </div>
 
             {/* Quantity */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
               <span className="text-sm font-medium">Quantity:</span>
               <div className="flex items-center border border-[#e5e5e5] rounded">
                 <button
@@ -223,7 +262,7 @@ export default function Home() {
                   +
                 </button>
               </div>
-              <span className="text-xs text-[#555]">3 available / 2,841 sold</span>
+              <span className="text-[10px] md:text-xs text-[#555]">3 available / 2,841 sold</span>
             </div>
 
             {/* Buy It Now */}
@@ -258,29 +297,29 @@ export default function Home() {
             </button>
 
             {/* Shipping info */}
-            <div className="border border-[#e5e5e5] rounded-lg p-4 mb-4">
+            <div className="border border-[#e5e5e5] rounded-lg p-3 md:p-4 mb-4">
               <div className="flex justify-between items-start mb-3">
-                <div>
-                  <p className="text-sm font-medium">Shipping:</p>
-                  <p className="text-sm text-[#86b817] font-medium">FREE Standard Shipping</p>
-                  <p className="text-xs text-[#555] mt-1">
+                <div className="min-w-0 flex-1">
+                  <p className="text-xs md:text-sm font-medium">Shipping:</p>
+                  <p className="text-xs md:text-sm text-[#86b817] font-medium">FREE Standard Shipping</p>
+                  <p className="text-[10px] md:text-xs text-[#555] mt-1">
                     Estimated delivery: Mar 5 - Mar 10
                   </p>
                 </div>
-                <span className="text-xs text-[#0654ba] cursor-pointer hover:underline">See details</span>
+                <span className="text-[10px] md:text-xs text-[#0654ba] cursor-pointer hover:underline shrink-0 ml-2">See details</span>
               </div>
 
               <div className="flex justify-between items-start mb-3 pt-3 border-t border-[#e5e5e5]">
                 <div>
-                  <p className="text-sm font-medium">Returns:</p>
-                  <p className="text-sm text-[#555]">30 day returns. Buyer pays for return shipping.</p>
+                  <p className="text-xs md:text-sm font-medium">Returns:</p>
+                  <p className="text-xs md:text-sm text-[#555]">30 day returns. Buyer pays for return shipping.</p>
                 </div>
               </div>
 
               <div className="flex justify-between items-start pt-3 border-t border-[#e5e5e5]">
                 <div>
-                  <p className="text-sm font-medium">Payments:</p>
-                  <div className="flex gap-2 mt-1">
+                  <p className="text-xs md:text-sm font-medium">Payments:</p>
+                  <div className="flex flex-wrap gap-1.5 md:gap-2 mt-1">
                     {["Visa", "MC", "Amex", "PayPal"].map((pay) => (
                       <span key={pay} className="text-[10px] border border-[#e5e5e5] rounded px-2 py-0.5 text-[#555]">
                         {pay}
@@ -292,8 +331,8 @@ export default function Home() {
             </div>
 
             {/* eBay Money Back Guarantee */}
-            <div className="bg-[#f7f7f7] rounded-lg p-4 flex items-start gap-3">
-              <svg className="w-8 h-8 text-[#0654ba] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+            <div className="bg-[#f7f7f7] rounded-lg p-3 md:p-4 flex items-start gap-2 md:gap-3">
+              <svg className="w-6 h-6 md:w-8 md:h-8 text-[#0654ba] shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <div>
@@ -308,15 +347,15 @@ export default function Home() {
         {/* Seller Info */}
         <div className="mt-10 border-t border-[#e5e5e5] pt-8">
           <h2 className="text-lg font-medium mb-4">Seller information</h2>
-          <div className="flex items-start gap-4 mb-6">
-            <div className="w-12 h-12 rounded-full bg-[#3665f3] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+          <div className="flex items-start gap-3 md:gap-4 mb-6">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#3665f3] flex items-center justify-center text-white text-base md:text-lg font-bold shrink-0">
               C
             </div>
             <div>
               <p className="text-[#0654ba] font-medium cursor-pointer hover:underline">candy_services_official</p>
-              <p className="text-sm text-[#555]">99.8% positive feedback | 1,247 ratings</p>
-              <p className="text-sm text-[#555]">Member since: 2019 | Location: Australia</p>
-              <div className="flex gap-3 mt-2">
+              <p className="text-xs md:text-sm text-[#555]">99.8% positive feedback | 1,247 ratings</p>
+              <p className="text-xs md:text-sm text-[#555]">Member since: 2019 | Location: Australia</p>
+              <div className="flex flex-wrap gap-2 md:gap-3 mt-2">
                 <span className="text-xs text-[#0654ba] cursor-pointer hover:underline">Contact seller</span>
                 <span className="text-xs text-[#0654ba] cursor-pointer hover:underline">Visit store</span>
                 <span className="text-xs text-[#0654ba] cursor-pointer hover:underline">See other items</span>
@@ -352,8 +391,8 @@ export default function Home() {
         {/* Item Description */}
         <div className="mt-10 border-t border-[#e5e5e5] pt-8">
           <h2 className="text-lg font-medium mb-4">Item description from the seller</h2>
-          <div className="bg-[#f7f7f7] rounded-lg p-6">
-            <h3 className="text-xl font-bold mb-3">Candy&apos;s Premium Professional Services</h3>
+          <div className="bg-[#f7f7f7] rounded-lg p-4 md:p-6">
+            <h3 className="text-lg md:text-xl font-bold mb-3">Candy&apos;s Premium Professional Services</h3>
             <p className="text-sm text-[#555] mb-4 leading-6">
               Welcome to Candy&apos;s Professional Services! With over 2,800 satisfied clients and a near-perfect feedback score,
               you&apos;re in the best hands. Candy brings creativity, dedication, and a personal touch to every project.
@@ -413,8 +452,8 @@ export default function Home() {
                   { user: "m***k", text: "Best service I've ever purchased on eBay. The attention to detail is unmatched.", date: "Feb 2026" },
                   { user: "j***n", text: "5 stars isn't enough! Fast, professional, and the results speak for themselves.", date: "Jan 2026" },
                 ].map((review, i) => (
-                  <div key={i} className="flex items-start gap-3 bg-white rounded p-3 border border-[#e5e5e5]">
-                    <div className="flex text-[#f5af02]">
+                  <div key={i} className="flex items-start gap-2 md:gap-3 bg-white rounded p-2.5 md:p-3 border border-[#e5e5e5]">
+                    <div className="flex text-[#f5af02] shrink-0">
                       {[1, 2, 3, 4, 5].map((s) => (
                         <svg key={s} className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -437,7 +476,7 @@ export default function Home() {
         {/* People also viewed */}
         <div className="mt-10 border-t border-[#e5e5e5] pt-8">
           <h2 className="text-lg font-medium mb-4">People who viewed this item also viewed</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4">
             {[
               { title: "Pro Creative Services Package", price: "$89.99", sold: "1,203 sold" },
               { title: "Personal Consultation 1hr", price: "$59.99", sold: "890 sold" },
@@ -463,8 +502,8 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-[#f7f7f7] border-t border-[#e5e5e5] mt-8">
-        <div className="max-w-[1200px] mx-auto px-4 py-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+        <div className="max-w-[1200px] mx-auto px-3 md:px-4 py-6 md:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
             {[
               { title: "Buy", links: ["Registration", "eBay Money Back Guarantee", "Bidding & buying help"] },
               { title: "Sell", links: ["Start selling", "How to sell", "Business sellers"] },
